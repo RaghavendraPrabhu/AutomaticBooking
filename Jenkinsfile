@@ -32,4 +32,33 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            script {
+                def buildSuccess = currentBuild.result == 'SUCCESS'
+                sendEmailNotification(buildSuccess)
+            }
+        }
+    }
+}
+
+def sendEmailNotification(isSuccess) {
+    dir('/home/RaghuWork/AutomaticBooking') {
+        def status = isSuccess ? "Successful 😊" : "Failed 😢"
+        def color = isSuccess ? "Green" : "Red"
+
+        emailext attachLog: true,
+            attachmentsPattern: 'gitlog.txt',
+            subject: "BMD Seat Booking Done",
+            to: 'raghavendrap@siddhatech.com,ankital@siddhatech.com',
+            body: """Hi Guys,</br>
+</br>
+BMD Seat Booking Done For Monday / Tuesday / Wednesday
+</br>
+</br>
+Thanks & Regards,</br>
+Raghavendra Uday Prabhu</br>""",
+            compressLog: true
+    }
 }
