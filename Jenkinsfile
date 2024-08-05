@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     dir('/home/RaghuWork/AutomaticBooking') {
-                        sh './bmd.sh'
+                        //sh './bmd.sh'
                     }
                 }
             }
