@@ -5,8 +5,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    dir('/home/RaghuWork') {
-                        git branch: 'development', credentialsId: 'Git - RaghavendraP', url: 'https://github.com/RaghavendraPrabhu/AutomaticBooking.git'
+                    dir('/home/RaghuWork/AutomaticBooking') {
+                        git branch: 'main', credentialsId: 'Git - RaghavendraP', url: 'https://github.com/RaghavendraPrabhu/AutomaticBooking.git'
                     }
                 }
             }
