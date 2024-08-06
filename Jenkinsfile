@@ -48,8 +48,7 @@ def sendEmailNotification(isSuccess) {
         def status = isSuccess ? "Successful 😊" : "Failed 😢"
         def color = isSuccess ? "Green" : "Red"
 
-        emailext attachLog: true,
-            attachmentsPattern: 'gitlog.txt',
+        emailext attachLog: false,
             subject: "BMD Seat Booking Done",
             to: 'raghavendrap@siddhatech.com,ankital@siddhatech.com',
             body: """Hi Guys,</br>
