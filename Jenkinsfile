@@ -11,6 +11,17 @@ pipeline {
                 }
             }
         }
+        
+        stage('BMD Site Up') {
+            steps {
+                script {
+                    dir('/home/RaghuWork/BMD') {
+                        sh 'docker-compose up -d'
+                        sh 'sleep 5'
+                    }
+                }
+            }
+        }
 
         stage('Prepare Script') {
             steps {
@@ -27,6 +38,17 @@ pipeline {
                 script {
                     dir('/home/RaghuWork/AutomaticBooking') {
                         sh './bmd.sh'
+                        sh 'sleep 5'
+                    }
+                }
+            }
+        }
+        
+        stage('BMD Site Down') {
+            steps {
+                script {
+                    dir('/home/RaghuWork/BMD') {
+                        sh 'docker-compose down'
                     }
                 }
             }
